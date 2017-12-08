@@ -123,5 +123,5 @@ func (c *client) buildNsqMessages(events []publisher.Event) ([][]byte, error) {
 			count++
 		}
 	}
-	return msgs[count:], err
+	return msgs[:count], err
 }
