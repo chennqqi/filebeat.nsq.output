@@ -82,6 +82,7 @@ func (c *client) Publish(batch publisher.Batch) error {
 	//build message failed
 	msgs, err := c.buildNsqMessages(events)
 	dropped := len(events) - len(msgs)
+	logp.Info("events=%v msgs=%v", len(events), len(msgs))
 	if err != nil {
 		//	st.Dropped(dropped)
 		//	st.Acked(len(events) - dropped)
@@ -94,7 +95,7 @@ func (c *client) Publish(batch publisher.Batch) error {
 	//nsq send failed do retry...
 	err = c.producer.MultiPublish(c.topic, msgs)
 	if err != nil {
-		logp.Err("[main:nsq] producer.MultiPublish ", err)
+		//logp.Err("[main:nsq] producer.MultiPublish ", err)
 		c.stats.Failed(len(events))
 		batch.RetryEvents(events)
 		return err
@@ -114,12 +115,16 @@ func (c *client) buildNsqMessages(events []publisher.Event) ([][]byte, error) {
 	var err error
 	for idx := 0; idx < length; idx++ {
 		event := events[idx].Content
-		serializedEvent, err := c.codec.Encode(c.index, &event)
+		serializedEvent, nerr := c.codec.Encode(c.index, &event)
+		//fmt.Printf("fmt.Event %p --- %p\n", &event, serializedEvent)
 		if err != nil {
 			logp.Err("[main:nsq] c.codec.Encode ", err)
-			err = err
+			err = nerr
 		} else {
-			msgs[count] = serializedEvent
+			//should copy, see https://blog.golang.org/go-slices-usage-and-internals
+			tmp := (serializedEvent)
+			//logp.Info("main:nsq] BuildMessage: %v", string(serializedEvent))
+			msgs[count] = (tmp) 
 			count++
 		}
 	}
