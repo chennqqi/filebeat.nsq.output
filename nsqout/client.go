@@ -122,9 +122,9 @@ func (c *client) buildNsqMessages(events []publisher.Event) ([][]byte, error) {
 			err = nerr
 		} else {
 			//should copy, see https://blog.golang.org/go-slices-usage-and-internals
-			tmp := (serializedEvent)
+			tmp := string(serializedEvent)
 			//logp.Info("main:nsq] BuildMessage: %v", string(serializedEvent))
-			msgs[count] = (tmp) 
+			msgs[count] = []byte(tmp)
 			count++
 		}
 	}
