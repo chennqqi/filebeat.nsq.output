@@ -1,4 +1,4 @@
-# filebeat.mongodb.output
+# filebeat.nsq.output
 A Filebeat embedding a nsq output.
 
 You can use the output in every beat you want. This repository offers a Filebeat "main" that embeds it.
