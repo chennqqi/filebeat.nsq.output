@@ -117,7 +117,7 @@ func (c *client) buildNsqMessages(events []publisher.Event) ([][]byte, error) {
 		event := events[idx].Content
 		serializedEvent, nerr := c.codec.Encode(c.index, &event)
 		//fmt.Printf("fmt.Event %p --- %p\n", &event, serializedEvent)
-		if err != nil {
+		if nerr != nil {
 			logp.Err("[main:nsq] c.codec.Encode ", err)
 			err = nerr
 		} else {
