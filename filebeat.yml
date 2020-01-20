@@ -12,17 +12,17 @@
 
 #=========================== Filebeat prospectors =============================
 
-filebeat.prospectors:
+filebeat.inputs:
 
-- type: log
+    - type: log
 
-  enabled: true
+      enabled: true
 
-  paths:
-    - /var/log/elasticsearch/*
+      paths:
+        - /var/log/elasticsearch/*
 
-  fields:
-    myfield: myvalue
+      fields:
+        myfield: myvalue
 
 
 #================================ Outputs =====================================
@@ -30,7 +30,7 @@ filebeat.prospectors:
 #---------------------------- nsq output ---------------------------------
 output.nsq:
   
-  nsqd: ["127.0.0.1:4150"]
+  nsqd: "127.0.0.1:4150"
   
   # The mongodb database to push to
   topic: "nsqbeat"
