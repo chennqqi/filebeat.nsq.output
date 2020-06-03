@@ -1,13 +1,14 @@
 package nsqout
 
 import (
+	"context"
 	"time"
 
-	"github.com/elastic/beats/libbeat/logp"
-	"github.com/elastic/beats/libbeat/outputs"
-	"github.com/elastic/beats/libbeat/outputs/codec"
-	"github.com/elastic/beats/libbeat/outputs/outil"
-	"github.com/elastic/beats/libbeat/publisher"
+	"github.com/elastic/beats/v7/libbeat/logp"
+	"github.com/elastic/beats/v7/libbeat/outputs"
+	"github.com/elastic/beats/v7/libbeat/outputs/codec"
+	"github.com/elastic/beats/v7/libbeat/outputs/outil"
+	"github.com/elastic/beats/v7/libbeat/publisher"
 	"github.com/nsqio/go-nsq"
 )
 
@@ -66,7 +67,7 @@ func (c *client) Connect() error {
 	return err
 }
 
-func (c *client) Publish(batch publisher.Batch) error {
+func (c *client) Publish(ctx context.Context, batch publisher.Batch) error {
 	if c == nil {
 		panic("no client")
 	}

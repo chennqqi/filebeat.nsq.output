@@ -6,6 +6,16 @@ You can compile and use it by following the Golang setup detailed in the CONTRIB
 https://www.elastic.co/guide/en/beats/devguide/current/beats-contributing.html#setting-up-dev-environment
 
 And compiling this repository using :
+
+install go version 1.13.10
+update go.mod with beats/go.mod
+
+```Go
+git clone github.com/elastic/beats
+git clone github.com/chennqqi/filebeat.nsq.output
+cd filebeat.nsq.output
+ln -s ../beats/vendor .
+GO111MODULE=off go build
 * go build
 
 To build the project, and :
