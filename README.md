@@ -11,8 +11,8 @@ install go version 1.13.10
 update go.mod with beats/go.mod
 
 ```Go
-git clone github.com/elastic/beats
-git clone github.com/chennqqi/filebeat.nsq.output
+git clone https://github.com/elastic/beats.git
+git clone https://github.com/chennqqi/filebeat.nsq.output.git
 cd filebeat.nsq.output
 ln -s ../beats/vendor .
 GO111MODULE=off go build
