@@ -16,7 +16,7 @@ git clone https://github.com/chennqqi/filebeat.nsq.output.git
 cd filebeat.nsq.output
 ln -s ../beats/vendor .
 GO111MODULE=off go build
-* go build
+```
 
 To build the project, and :
 
