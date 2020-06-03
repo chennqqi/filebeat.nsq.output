@@ -7,7 +7,7 @@ https://www.elastic.co/guide/en/beats/devguide/current/beats-contributing.html#s
 
 And compiling this repository using :
 
-install go version 1.13.10
+install go version 1.13.10  
 update go.mod with beats/go.mod
 
 ```Go
