@@ -13,12 +13,10 @@
 #=========================== Filebeat prospectors =============================
 
 filebeat.inputs:
-    - type: log
-      enabled: true
-      paths:
-        - /var/log/elasticsearch/*
-      fields:
-        myfield: myvalue
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/*.log
 
 #================================ Outputs =====================================
 
@@ -26,7 +24,7 @@ filebeat.inputs:
 output.nsq:
   nsqd: "127.0.0.1:4150"
   # The mongodb database to push to
-  topic: "nsqbeat"
+  topic: "nginx"
   # The database collection to push to
   # Could be configured like key/keys of the Redis output : https://www.elastic.co/guide/en/beats/filebeat/current/redis-output.html#_key_2
   #collection: "%{[fields.myfield]}"

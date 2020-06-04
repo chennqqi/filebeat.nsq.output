@@ -9,12 +9,14 @@ And compiling this repository using :
 
 install go version 1.13.10  
 update go.mod with beats/go.mod
+require set GOPATH
+if you use goenv, you should exporet GOENV_DISABLE_GOPATH=1
 
 ```Go
-git clone https://github.com/elastic/beats.git
-git clone https://github.com/chennqqi/filebeat.nsq.output.git
-cd filebeat.nsq.output
-ln -s ../beats/vendor .
+go get -d github.com/elastic/beats
+go get -d github.com/chennqqi/filebeat.nsq.output
+cd $GOPATH/src/github.com/chennqqi/filebeat.nsq.output
+ln -s ../../elastic/beats/vendor .
 GO111MODULE=off go build
 ```
 
